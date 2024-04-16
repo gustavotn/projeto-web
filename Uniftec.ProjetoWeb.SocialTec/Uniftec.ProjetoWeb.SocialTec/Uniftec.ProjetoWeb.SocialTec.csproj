@@ -6,12 +6,4 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="Views\Perfil\Index.cshtml.css" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Include="Views\Perfil\Index.cshtml.css" />
-  </ItemGroup>
-
 </Project>
