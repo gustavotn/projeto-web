@@ -3,6 +3,10 @@
     margin-top: 20px;
 }
 
+a {
+    text-decoration: none;
+}
+
 .profile-page .profile-header {
     box-shadow: 0 0 10px 0 rgba(183, 192, 206, 0.2);
     border: 1px solid #f2f4f9;
