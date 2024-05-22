@@ -1,0 +1,6 @@
+@Uniftec.ProjetoWeb.SocialTec.Api_HostAddress = http://localhost:5269
+
+GET {{Uniftec.ProjetoWeb.SocialTec.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
