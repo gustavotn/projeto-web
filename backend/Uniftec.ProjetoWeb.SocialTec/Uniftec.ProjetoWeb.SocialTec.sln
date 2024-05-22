@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uniftec.ProjetoWeb.SocialTec.Api", "Uniftec.ProjetoWeb.SocialTec.Api\Uniftec.ProjetoWeb.SocialTec.Api.csproj", "{960EC5BA-7EFE-44AE-A5DD-6D9977EC8225}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Uniftec.ProjetoWeb.SocialTec.Api", "Uniftec.ProjetoWeb.SocialTec.Api\Uniftec.ProjetoWeb.SocialTec.Api.csproj", "{960EC5BA-7EFE-44AE-A5DD-6D9977EC8225}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{8DBFEBF2-9DAB-4354-8553-AE23B3150C89}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,6 +20,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{960EC5BA-7EFE-44AE-A5DD-6D9977EC8225} = {8DBFEBF2-9DAB-4354-8553-AE23B3150C89}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {48ED5CF1-5B38-49B8-B7DE-C64DC87A621A}
