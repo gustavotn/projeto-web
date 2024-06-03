@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Uniftec.ProjetoWeb.SocialTec.Domain\Uniftec.ProjetoWeb.SocialTec.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
