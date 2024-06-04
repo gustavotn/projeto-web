@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Npgsql" Version="8.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Uniftec.ProjetoWeb.SocialTec.Domain\Uniftec.ProjetoWeb.SocialTec.Domain.csproj" />
   </ItemGroup>
 

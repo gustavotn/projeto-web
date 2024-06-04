@@ -13,7 +13,7 @@ namespace Uniftec.ProjetoWeb.SocialTec.Domain.Entities
         public string Usuario { get; set; }
         public string Descricao { get; set; }
         public DateTime DataPublicacao { get; set; }
-        public List<String> UrlMidia { get; }
+        public List<string> UrlsMidia { get; }
 
         public Publicacao()
         {
@@ -21,15 +21,15 @@ namespace Uniftec.ProjetoWeb.SocialTec.Domain.Entities
             this.Usuario = string.Empty;
             this.Descricao = string.Empty;
             this.DataPublicacao = DateTime.Now;
-            this.UrlMidia = new List<String>();
+            this.UrlsMidia = new List<string>();
         }
-        public void AdicionaMidia(String Url)
+        public void AdicionaMidia(string Url)
         {
             if (string.IsNullOrEmpty(Url))
             {
                 throw new Exception("A URL não foi informada.");
             }
-            this.UrlMidia.Add(Url);
+            this.UrlsMidia.Add(Url);
         }
     }
 }
