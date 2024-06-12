@@ -37,7 +37,7 @@ namespace Uniftec.ProjetoWeb.SocialTec.Repository.Repository
                     {
                         cmd.Parameters.Clear();
                         cmd.CommandText = @"INSERT INTO public.publicacaomidia 
-                                                (idcliente, id, url)
+                                                (idpublicacao, id, url)
                                           VALUES(@idpublicacao, @id, @url)";
                         cmd.Parameters.AddWithValue("idpublicacao", publicacao.Id);
                         cmd.Parameters.AddWithValue("id", Guid.NewGuid());
@@ -56,13 +56,14 @@ namespace Uniftec.ProjetoWeb.SocialTec.Repository.Repository
                 using (NpgsqlCommand cmd = new NpgsqlCommand())
                 {
                     cmd.Connection = con;
-                    cmd.CommandText = "Delete from publicacao where idpublicacao=@id";
-                    cmd.Parameters.AddWithValue("id", id);
-                    cmd.ExecuteNonQuery();
 
                     cmd.Parameters.Clear();
                     cmd.CommandText = "Delete from publicacaomidia where idpublicacao=@id";
                     cmd.Parameters.AddWithValue("idpublicacao", id);
+                    cmd.ExecuteNonQuery();
+
+                    cmd.CommandText = "Delete from publicacao where id=@id";
+                    cmd.Parameters.AddWithValue("id", id);
                     cmd.ExecuteNonQuery();
                 }
             }
@@ -87,8 +88,8 @@ namespace Uniftec.ProjetoWeb.SocialTec.Repository.Repository
                     {
                         cmd.Parameters.Clear();
                         cmd.CommandText = @"INSERT INTO public.publicacaomidia 
-                                                (idcliente, id, url)
-                                          VALUES(@idcliente, @id, @url)";
+                                                (idpublicacao, id, url)
+                                          VALUES(@idpublicacao, @id, @url)";
                         cmd.Parameters.AddWithValue("idpublicacao", publicacao.Id);
                         cmd.Parameters.AddWithValue("id", Guid.NewGuid());
                         cmd.Parameters.AddWithValue("url", midia);
@@ -108,7 +109,7 @@ namespace Uniftec.ProjetoWeb.SocialTec.Repository.Repository
                 using (NpgsqlCommand cmd = new NpgsqlCommand())
                 {
                     cmd.Connection = con;
-                    cmd.CommandText = "Select id, descricao, datapublicacao from cliente where id=@id";
+                    cmd.CommandText = "Select id, usuario, descricao, datapublicacao from cliente where id=@id";
                     cmd.Parameters.AddWithValue("id", id);
                     var leitor = cmd.ExecuteReader();
                     while (leitor.Read())
@@ -119,7 +120,7 @@ namespace Uniftec.ProjetoWeb.SocialTec.Repository.Repository
                         publicacao.DataPublicacao = DateTime.Parse(leitor["datapublicacao"]?.ToString());
                     }
                     leitor.Close();
-                    cmd.CommandText = "select * from endereco where idcliente=@id";
+                    cmd.CommandText = "select * from publicacaomidia where idpublicacao=@id";
                     leitor = cmd.ExecuteReader();
                     while (leitor.Read())
                     {
@@ -141,7 +142,7 @@ namespace Uniftec.ProjetoWeb.SocialTec.Repository.Repository
                 using (NpgsqlCommand cmd = new NpgsqlCommand())
                 {
                     cmd.Connection = con;
-                    cmd.CommandText = "Select id, descricao, datapublicacao from cliente where id=@id";
+                    cmd.CommandText = "Select id, usuario, descricao, datapublicacao from publicacao where id=@id";
                     var leitor = cmd.ExecuteReader();
                     while (leitor.Read())
                     {
