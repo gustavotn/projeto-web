@@ -13,9 +13,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infra", "Infra", "{6B517FE5-BAFF-418A-9112-A497BF18B23C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uniftec.ProjetoWeb.SocialTec.Domain", "Uniftec.ProjetoWeb.SocialTec.Domain\Uniftec.ProjetoWeb.SocialTec.Domain.csproj", "{22851838-47A9-42C5-A108-9BAE3379058F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Uniftec.ProjetoWeb.SocialTec.Domain", "Uniftec.ProjetoWeb.SocialTec.Domain\Uniftec.ProjetoWeb.SocialTec.Domain.csproj", "{22851838-47A9-42C5-A108-9BAE3379058F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uniftec.ProjetoWeb.SocialTec.Repository", "Uniftec.ProjetoWeb.SocialTec.Repository\Uniftec.ProjetoWeb.SocialTec.Repository.csproj", "{35E4A295-94A5-4ED4-AF41-DE409E8F167F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Uniftec.ProjetoWeb.SocialTec.Repository", "Uniftec.ProjetoWeb.SocialTec.Repository\Uniftec.ProjetoWeb.SocialTec.Repository.csproj", "{35E4A295-94A5-4ED4-AF41-DE409E8F167F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uniftec.ProjetoWeb.SocialTec.Application", "Uniftec.ProjetoWeb.SocialTec.Application\Uniftec.ProjetoWeb.SocialTec.Application.csproj", "{9E3D81DF-12C3-4038-A19E-FD761BA6C77D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uniftec.ProjetoWeb.SocialTec.Test", "Uniftec.ProjetoWeb.SocialTec.Test\Uniftec.ProjetoWeb.SocialTec.Test.csproj", "{707F13D2-CCB4-458C-B96B-553EEBDF9BD0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +39,14 @@ Global
 		{35E4A295-94A5-4ED4-AF41-DE409E8F167F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{35E4A295-94A5-4ED4-AF41-DE409E8F167F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{35E4A295-94A5-4ED4-AF41-DE409E8F167F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E3D81DF-12C3-4038-A19E-FD761BA6C77D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E3D81DF-12C3-4038-A19E-FD761BA6C77D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E3D81DF-12C3-4038-A19E-FD761BA6C77D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E3D81DF-12C3-4038-A19E-FD761BA6C77D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{707F13D2-CCB4-458C-B96B-553EEBDF9BD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{707F13D2-CCB4-458C-B96B-553EEBDF9BD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{707F13D2-CCB4-458C-B96B-553EEBDF9BD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{707F13D2-CCB4-458C-B96B-553EEBDF9BD0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -43,6 +55,8 @@ Global
 		{960EC5BA-7EFE-44AE-A5DD-6D9977EC8225} = {8DBFEBF2-9DAB-4354-8553-AE23B3150C89}
 		{22851838-47A9-42C5-A108-9BAE3379058F} = {4098CA9E-6B2D-4649-B6B8-4CE41D4D60F6}
 		{35E4A295-94A5-4ED4-AF41-DE409E8F167F} = {6B517FE5-BAFF-418A-9112-A497BF18B23C}
+		{9E3D81DF-12C3-4038-A19E-FD761BA6C77D} = {AE7A0039-D867-4FA7-8283-3EA5EDC0C512}
+		{707F13D2-CCB4-458C-B96B-553EEBDF9BD0} = {6B517FE5-BAFF-418A-9112-A497BF18B23C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {48ED5CF1-5B38-49B8-B7DE-C64DC87A621A}
