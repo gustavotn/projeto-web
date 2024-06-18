@@ -15,7 +15,7 @@ namespace Uniftec.ProjetoWeb.SocialTec.Application.Application
         private PublicacaoRepository publicacaoRepository;
         public PublicacaoApplication() 
         {
-            string strConexao = "";
+            string strConexao = "Server=localhost;Port=5432;Database=social-tec;User Id=postgres;Password=1234;";
             this.publicacaoRepository = new PublicacaoRepository(strConexao);
         }
 

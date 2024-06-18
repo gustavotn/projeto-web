@@ -13,7 +13,7 @@ namespace Uniftec.ProjetoWeb.SocialTec.Domain.Entities
         public string Usuario { get; set; }
         public string Descricao { get; set; }
         public DateTime DataPublicacao { get; set; }
-        public List<string> UrlsMidia { get; }
+        public List<string> UrlsMidia { get; set; }
 
         public Publicacao()
         {

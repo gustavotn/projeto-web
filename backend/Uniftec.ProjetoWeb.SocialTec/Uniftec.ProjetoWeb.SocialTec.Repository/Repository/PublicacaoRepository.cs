@@ -21,12 +21,12 @@ namespace Uniftec.ProjetoWeb.SocialTec.Repository.Repository
                 using (NpgsqlCommand cmd = new NpgsqlCommand())
                 {
                     cmd.Connection = con;
-                    cmd.CommandText = "UPDATE public.publicacao SET id=@id, usuario=@usuario, descricao=@descricao, datapublicacao=@datapublicacao WHERE id=@id";
+                    cmd.CommandText = "UPDATE public.publicacao SET usuario=@usuario, descricao=@descricao, datapublicacao=@datapublicacao WHERE id=@id";
                     cmd.Parameters.AddWithValue("id", publicacao.Id);
                     cmd.Parameters.AddWithValue("usuario", publicacao.Usuario);
                     cmd.Parameters.AddWithValue("descricao", publicacao.Descricao);
                     cmd.Parameters.AddWithValue("datapublicacao", publicacao.DataPublicacao);
-                    cmd.ExecuteNonQuery();
+                    Console.WriteLine(cmd.ExecuteNonQuery());
 
                     cmd.Parameters.Clear();
                     cmd.CommandText = "Delete from publicacaomidia where idpublicacao=@id";
@@ -37,7 +37,7 @@ namespace Uniftec.ProjetoWeb.SocialTec.Repository.Repository
                     {
                         cmd.Parameters.Clear();
                         cmd.CommandText = @"INSERT INTO public.publicacaomidia 
-                                                (idcliente, id, url)
+                                                (idpublicacao, id, url)
                                           VALUES(@idpublicacao, @id, @url)";
                         cmd.Parameters.AddWithValue("idpublicacao", publicacao.Id);
                         cmd.Parameters.AddWithValue("id", Guid.NewGuid());
@@ -56,13 +56,14 @@ namespace Uniftec.ProjetoWeb.SocialTec.Repository.Repository
                 using (NpgsqlCommand cmd = new NpgsqlCommand())
                 {
                     cmd.Connection = con;
-                    cmd.CommandText = "Delete from publicacao where idpublicacao=@id";
+                    cmd.CommandText = "Delete from publicacaomidia where idpublicacao=@id";
                     cmd.Parameters.AddWithValue("id", id);
                     cmd.ExecuteNonQuery();
 
                     cmd.Parameters.Clear();
-                    cmd.CommandText = "Delete from publicacaomidia where idpublicacao=@id";
-                    cmd.Parameters.AddWithValue("idpublicacao", id);
+
+                    cmd.CommandText = "Delete from publicacao where id=@id";
+                    cmd.Parameters.AddWithValue("id", id);
                     cmd.ExecuteNonQuery();
                 }
             }
@@ -87,8 +88,8 @@ namespace Uniftec.ProjetoWeb.SocialTec.Repository.Repository
                     {
                         cmd.Parameters.Clear();
                         cmd.CommandText = @"INSERT INTO public.publicacaomidia 
-                                                (idcliente, id, url)
-                                          VALUES(@idcliente, @id, @url)";
+                                                (idpublicacao, id, url)
+                                          VALUES(@idpublicacao, @id, @url)";
                         cmd.Parameters.AddWithValue("idpublicacao", publicacao.Id);
                         cmd.Parameters.AddWithValue("id", Guid.NewGuid());
                         cmd.Parameters.AddWithValue("url", midia);
@@ -108,18 +109,19 @@ namespace Uniftec.ProjetoWeb.SocialTec.Repository.Repository
                 using (NpgsqlCommand cmd = new NpgsqlCommand())
                 {
                     cmd.Connection = con;
-                    cmd.CommandText = "Select id, descricao, datapublicacao from cliente where id=@id";
+                    cmd.CommandText = "Select id, usuario, descricao, datapublicacao from publicacao where id=@id";
                     cmd.Parameters.AddWithValue("id", id);
                     var leitor = cmd.ExecuteReader();
                     while (leitor.Read())
                     {
                         publicacao = new Publicacao();
                         publicacao.Id = Guid.Parse(leitor["id"].ToString());
+                        publicacao.Usuario = leitor["usuario"].ToString();
                         publicacao.Descricao = leitor["descricao"].ToString();
                         publicacao.DataPublicacao = DateTime.Parse(leitor["datapublicacao"]?.ToString());
                     }
                     leitor.Close();
-                    cmd.CommandText = "select * from endereco where idcliente=@id";
+                    cmd.CommandText = "select * from publicacaomidia where idpublicacao=@id";
                     leitor = cmd.ExecuteReader();
                     while (leitor.Read())
                     {
@@ -141,18 +143,35 @@ namespace Uniftec.ProjetoWeb.SocialTec.Repository.Repository
                 using (NpgsqlCommand cmd = new NpgsqlCommand())
                 {
                     cmd.Connection = con;
-                    cmd.CommandText = "Select id, descricao, datapublicacao from cliente where id=@id";
+                    cmd.CommandText = "Select id, descricao, usuario, datapublicacao from publicacao";
                     var leitor = cmd.ExecuteReader();
                     while (leitor.Read())
                     {
                         var publicacao = new Publicacao();
 
                         publicacao.Id = Guid.Parse(leitor["id"].ToString());
+                        publicacao.Usuario = leitor["usuario"].ToString();
                         publicacao.Descricao = leitor["descricao"].ToString();
                         publicacao.DataPublicacao = DateTime.Parse(leitor["datapublicacao"]?.ToString());
 
                         publicacoes.Add(publicacao);
                     }
+
+                    leitor.Close();
+
+                    foreach (var publicacao in publicacoes)
+                    {
+                        cmd.CommandText = "select * from publicacaomidia where idpublicacao=@id";
+                        cmd.Parameters.AddWithValue("id", publicacao.Id);
+                        leitor = cmd.ExecuteReader();
+                        while (leitor.Read())
+                        {
+                            publicacao.UrlsMidia.Add(leitor["url"].ToString());
+                        }
+                        leitor.Close();
+                        cmd.Parameters.Clear();
+                    }
+
                     leitor.Close();
                 }
             }
