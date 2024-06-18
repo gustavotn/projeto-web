@@ -14,6 +14,6 @@ namespace Uniftec.ProjetoWeb.SocialTec.Domain.Repository
 
         void Excluir(Guid id);
         Publicacao Procurar(Guid id);
-        List<Publicacao> ProcurarTodos();
+        List<Publicacao> ProcurarTodos(string idUsuario);
     }
 }

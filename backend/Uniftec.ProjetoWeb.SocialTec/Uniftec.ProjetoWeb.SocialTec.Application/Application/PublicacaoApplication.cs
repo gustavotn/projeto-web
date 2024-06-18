@@ -41,10 +41,10 @@ namespace Uniftec.ProjetoWeb.SocialTec.Application.Application
             Publicacao pub = publicacaoRepository.Procurar(id);
             return PublicacaoAdapter.ToDto(pub);
         }
-        public List<PublicacaoDto> ProcurarTodos()
+        public List<PublicacaoDto> ProcurarTodos(string idUsuario)
         {
             List<PublicacaoDto> publicacaoDto = new List<PublicacaoDto>();
-            var publicacaoes = publicacaoRepository.ProcurarTodos();
+            var publicacaoes = publicacaoRepository.ProcurarTodos(idUsuario);
             foreach(var pub in publicacaoes)
             {
                 publicacaoDto.Add(PublicacaoAdapter.ToDto(pub));

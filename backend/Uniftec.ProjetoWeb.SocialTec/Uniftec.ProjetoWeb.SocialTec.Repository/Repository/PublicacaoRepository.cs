@@ -1,4 +1,5 @@
 ﻿using Npgsql;
+using NpgsqlTypes;
 using Uniftec.ProjetoWeb.SocialTec.Domain.Entities;
 using Uniftec.ProjetoWeb.SocialTec.Domain.Repository;
 
@@ -133,7 +134,7 @@ namespace Uniftec.ProjetoWeb.SocialTec.Repository.Repository
             return publicacao;
         }
 
-        public List<Publicacao> ProcurarTodos()
+        public List<Publicacao> ProcurarTodos(string idUsuario)
         {
             var publicacoes = new List<Publicacao>();
 
@@ -143,7 +144,9 @@ namespace Uniftec.ProjetoWeb.SocialTec.Repository.Repository
                 using (NpgsqlCommand cmd = new NpgsqlCommand())
                 {
                     cmd.Connection = con;
-                    cmd.CommandText = "Select id, descricao, usuario, datapublicacao from publicacao";
+                    cmd.CommandText = "Select id, descricao, usuario, datapublicacao from publicacao where usuario=@usuario ORDER BY datapublicacao DESC";
+                    cmd.Parameters.AddWithValue("usuario", idUsuario);
+
                     var leitor = cmd.ExecuteReader();
                     while (leitor.Read())
                     {

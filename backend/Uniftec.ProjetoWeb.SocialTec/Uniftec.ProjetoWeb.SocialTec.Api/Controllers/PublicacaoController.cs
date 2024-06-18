@@ -12,11 +12,11 @@ namespace Uniftec.ProjetoWeb.SocialTec.Api.Controllers
     public class PublicacaoController : ControllerBase
     {
         [HttpGet]
-        public IEnumerable<PublicacaoModel> Get()
+        public IEnumerable<PublicacaoModel> Get([FromQuery] string idUsuario)
         {
             List<PublicacaoModel> publicacoesModel = new List<PublicacaoModel>();
             PublicacaoApplication app = new PublicacaoApplication();
-            var publicacoes = app.ProcurarTodos();
+            var publicacoes = app.ProcurarTodos(idUsuario);
             foreach(var publicacao in publicacoes)
             {
                 publicacoesModel.Add(PublicacaoMapping.ToModel(publicacao));
@@ -24,7 +24,7 @@ namespace Uniftec.ProjetoWeb.SocialTec.Api.Controllers
             return publicacoesModel.ToArray();
         }
         [HttpGet("{id:Guid}")]
-        public PublicacaoModel Get(Guid id) 
+        public PublicacaoModel Get([FromQuery] Guid id) 
         {
             PublicacaoApplication app = new PublicacaoApplication();
             var publicacao = app.Procurar(id);
