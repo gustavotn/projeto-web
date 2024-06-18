@@ -26,7 +26,7 @@ namespace Uniftec.ProjetoWeb.SocialTec.Repository.Repository
                     cmd.Parameters.AddWithValue("id", publicacao.Id);
                     cmd.Parameters.AddWithValue("usuario", publicacao.Usuario);
                     cmd.Parameters.AddWithValue("descricao", publicacao.Descricao);
-                    cmd.Parameters.AddWithValue("datapublicacao", publicacao.DataPublicacao);
+                    cmd.Parameters.AddWithValue("datapublicacao", DateTime.Now);
                     Console.WriteLine(cmd.ExecuteNonQuery());
 
                     cmd.Parameters.Clear();
