@@ -24,7 +24,7 @@ namespace Uniftec.ProjetoWeb.SocialTec.Api.Controllers
             return publicacoesModel.ToArray();
         }
         [HttpGet("{id:Guid}")]
-        public PublicacaoModel Get([FromQuery] Guid id) 
+        public PublicacaoModel Get(Guid id) 
         {
             PublicacaoApplication app = new PublicacaoApplication();
             var publicacao = app.Procurar(id);
