@@ -13,16 +13,39 @@ namespace Uniftec.ProjetoWeb.SocialTec.Application.Application
     public class PublicacaoApplication
     {
         private PublicacaoRepository publicacaoRepository;
+        private string diretorioMidias;
+
         public PublicacaoApplication() 
         {
             string strConexao = "Server=localhost;Port=5432;Database=social-tec;User Id=postgres;Password=1234;";
             this.publicacaoRepository = new PublicacaoRepository(strConexao);
+
+            this.diretorioMidias = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "SocialTec", "Midias");
+
+            if (!Directory.Exists(this.diretorioMidias))
+                Directory.CreateDirectory(this.diretorioMidias);
         }
 
         public Guid Inserir(PublicacaoDto publicacao)
         {
+            publicacao.Id = Guid.NewGuid();
             Publicacao pub = PublicacaoAdapter.ToDomain(publicacao);
-            pub.Id = Guid.NewGuid();
+
+            string diretorioRaizPub = Path.Combine(this.diretorioMidias, publicacao.Id.ToString());
+
+            if (!Directory.Exists(diretorioRaizPub))
+                Directory.CreateDirectory(diretorioRaizPub);
+
+            foreach (var midia in publicacao.Midias)
+            {
+                string nomeArquivo = Guid.NewGuid().ToString();
+                string caminhoCompletoArquivo = Path.Combine(diretorioRaizPub, nomeArquivo + midia.Extensao);
+
+                File.WriteAllBytes(caminhoCompletoArquivo, midia.Midia);
+
+                pub.AdicionaMidia(caminhoCompletoArquivo);
+            }
+
             publicacaoRepository.Inserir(pub);
             return pub.Id;
         }
@@ -34,12 +57,34 @@ namespace Uniftec.ProjetoWeb.SocialTec.Application.Application
         }
         public void Excluir(Guid id)
         {
+            Publicacao pub = publicacaoRepository.Procurar(id);
+
+            foreach (var url in pub.UrlsMidia)
+            {
+                File.Delete(url);
+
+                try
+                {
+                    Directory.Delete(url.Replace(Path.GetFileName(url), string.Empty));
+                }
+                catch
+                { }
+            }
+
             publicacaoRepository.Excluir(id);
         }
         public PublicacaoDto Procurar(Guid id)
         {
             Publicacao pub = publicacaoRepository.Procurar(id);
-            return PublicacaoAdapter.ToDto(pub);
+
+            var pubDto = PublicacaoAdapter.ToDto(pub);
+
+            foreach (var url in pub.UrlsMidia)
+            {
+                pubDto.Midias.Add(new PublicacaoMidiaDto(File.ReadAllBytes(url), Path.GetExtension(url)));
+            }
+
+            return pubDto;
         }
         public List<PublicacaoDto> ProcurarTodos(string idUsuario)
         {
@@ -47,7 +92,14 @@ namespace Uniftec.ProjetoWeb.SocialTec.Application.Application
             var publicacaoes = publicacaoRepository.ProcurarTodos(idUsuario);
             foreach(var pub in publicacaoes)
             {
-                publicacaoDto.Add(PublicacaoAdapter.ToDto(pub));
+                var pubDto = PublicacaoAdapter.ToDto(pub);
+
+                foreach (var url in pub.UrlsMidia)
+                {
+                    pubDto.Midias.Add(new PublicacaoMidiaDto(File.ReadAllBytes(url), Path.GetExtension(url)));
+                }
+
+                publicacaoDto.Add(pubDto);
             }
             return publicacaoDto;
         }

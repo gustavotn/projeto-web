@@ -21,10 +21,7 @@ namespace Uniftec.ProjetoWeb.SocialTec.Application.Adapter
                 publicacaoDomain.Usuario = publicacao.Usuario;
                 publicacaoDomain.Descricao = publicacao.Descricao;
                 publicacaoDomain.DataPublicacao = publicacao.DataPublicacao;
-                foreach(var url in publicacao.UrlsMidia)
-                {
-                    publicacaoDomain.AdicionaMidia(url);
-                }
+
                 return publicacaoDomain;
             }
         }
@@ -39,10 +36,7 @@ namespace Uniftec.ProjetoWeb.SocialTec.Application.Adapter
                 publicacaoDto.Usuario = publicacao.Usuario;
                 publicacaoDto.Descricao = publicacao.Descricao;
                 publicacaoDto.DataPublicacao = publicacao.DataPublicacao;
-                foreach (var url in publicacao.UrlsMidia)
-                {
-                    publicacaoDto.UrlsMidia.Add(url);
-                }
+                
                 return publicacaoDto;
             }
         }

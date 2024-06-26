@@ -13,11 +13,11 @@ namespace Uniftec.ProjetoWeb.SocialTec.Application.Dto
         public string Usuario { get; set; }
         public string Descricao { get; set; }
         public DateTime DataPublicacao { get; set; }
-        public List<string> UrlsMidia { get; }
+        public List<PublicacaoMidiaDto> Midias { get; }
 
         public PublicacaoDto()
         {
-            UrlsMidia = new List<string>();
+            Midias = new List<PublicacaoMidiaDto>();
         }
     }
 }

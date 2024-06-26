@@ -92,7 +92,7 @@ namespace Uniftec.ProjetoWeb.SocialTec.Repository.Repository
                                                 (idpublicacao, id, url)
                                           VALUES(@idpublicacao, @id, @url)";
                         cmd.Parameters.AddWithValue("idpublicacao", publicacao.Id);
-                        cmd.Parameters.AddWithValue("id", Guid.NewGuid());
+                        cmd.Parameters.AddWithValue("id", Guid.Parse(Path.GetFileName(midia).Replace(Path.GetExtension(midia), string.Empty)));
                         cmd.Parameters.AddWithValue("url", midia);
                         cmd.ExecuteNonQuery();
                     }

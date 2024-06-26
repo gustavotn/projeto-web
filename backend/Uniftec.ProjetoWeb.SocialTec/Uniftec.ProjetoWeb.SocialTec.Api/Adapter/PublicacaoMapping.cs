@@ -1,29 +1,37 @@
 ﻿using Uniftec.ProjetoWeb.SocialTec.Api.Models;
 using Uniftec.ProjetoWeb.SocialTec.Application.Dto;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Uniftec.ProjetoWeb.SocialTec.Api.Adapter
 {
     public static class PublicacaoMapping
     {
-        public static PublicacaoModel ToModel(PublicacaoDto publicacao)
+        public static PublicacaoResponseModel ToModel(PublicacaoDto publicacao)
         {
             if (publicacao == null)
                 return null;
             else
             {
-                PublicacaoModel publicacaoModel = new PublicacaoModel();
+                PublicacaoResponseModel publicacaoModel = new PublicacaoResponseModel();
                 publicacaoModel.Id = publicacao.Id;
                 publicacaoModel.Usuario = publicacao.Usuario;
                 publicacaoModel.Descricao = publicacao.Descricao;
                 publicacaoModel.DataPublicacao = publicacao.DataPublicacao;
-                foreach (var url in publicacao.UrlsMidia)
+                
+                foreach (var midia in publicacao.Midias)
                 {
-                    publicacaoModel.UrlsMidia.Add(url);
+                    string tipoConteudo;
+                    if (midia.Extensao.Contains("mp4"))
+                        tipoConteudo = "video/mp4";
+                    else tipoConteudo = "image/png";
+
+                    publicacaoModel.Midias.Add(new FileContentResult(midia.Midia, tipoConteudo));
                 }
+
                 return publicacaoModel;
             }
         }
-        public static PublicacaoDto ToDto(PublicacaoModel publicacao)
+        public static PublicacaoDto ToDto(PublicacaoRequestModel publicacao)
         {
             if (publicacao == null)
                 return null;
@@ -34,10 +42,16 @@ namespace Uniftec.ProjetoWeb.SocialTec.Api.Adapter
                 publicacaoDto.Usuario = publicacao.Usuario;
                 publicacaoDto.Descricao = publicacao.Descricao;
                 publicacaoDto.DataPublicacao = publicacao.DataPublicacao;
-                foreach (var url in publicacao.UrlsMidia)
+                
+                foreach (var midia in publicacao.Midias)
                 {
-                    publicacaoDto.UrlsMidia.Add(url);
+                    using (var memoryStream = new MemoryStream())
+                    {
+                        midia.CopyTo(memoryStream);
+                        publicacaoDto.Midias.Add(new PublicacaoMidiaDto(memoryStream.ToArray(), Path.GetExtension(midia.FileName)));
+                    }
                 }
+
                 return publicacaoDto;
             }
         }

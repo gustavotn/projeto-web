@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Uniftec.ProjetoWeb.SocialTec.Api.Adapter;
 using Uniftec.ProjetoWeb.SocialTec.Api.Models;
 using Uniftec.ProjetoWeb.SocialTec.Application.Application;
@@ -12,32 +11,32 @@ namespace Uniftec.ProjetoWeb.SocialTec.Api.Controllers
     public class PublicacaoController : ControllerBase
     {
         [HttpGet]
-        public IEnumerable<PublicacaoModel> Get([FromQuery] string idUsuario)
+        public IEnumerable<PublicacaoResponseModel> Get([FromQuery] string idUsuario)
         {
-            List<PublicacaoModel> publicacoesModel = new List<PublicacaoModel>();
+            List<PublicacaoResponseModel> publicacoesModel = new List<PublicacaoResponseModel>();
             PublicacaoApplication app = new PublicacaoApplication();
             var publicacoes = app.ProcurarTodos(idUsuario);
-            foreach(var publicacao in publicacoes)
+            foreach (var publicacao in publicacoes)
             {
                 publicacoesModel.Add(PublicacaoMapping.ToModel(publicacao));
             }
             return publicacoesModel.ToArray();
         }
         [HttpGet("{id:Guid}")]
-        public PublicacaoModel Get(Guid id) 
+        public PublicacaoResponseModel Get(Guid id)
         {
             PublicacaoApplication app = new PublicacaoApplication();
             var publicacao = app.Procurar(id);
             return PublicacaoMapping.ToModel(publicacao);
         }
         [HttpPost]
-        public Guid Post(PublicacaoModel publicacao)
+        public Guid Post(PublicacaoRequestModel publicacao)
         {
             PublicacaoApplication app = new PublicacaoApplication();
             return app.Inserir(PublicacaoMapping.ToDto(publicacao));
         }
         [HttpPut]
-        public Guid Put(PublicacaoModel publicacao)
+        public Guid Put(PublicacaoRequestModel publicacao)
         {
             PublicacaoApplication app = new PublicacaoApplication();
             return app.Alterar(PublicacaoMapping.ToDto(publicacao));
