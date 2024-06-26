@@ -14,13 +14,13 @@ namespace Uniftec.ProjetoWeb.SocialTec.Test
         [TestMethod]
         public void InserirTest()
         {
-            string strConexao = ""; //Incluir string de conexão
+            string strConexao = "Server=pgsql.jmenzen.com.br;Port=5432;Database=jmenzen4;User Id=jmenzen4;Password='8N9;FLC?;@?I';";
             var publicacaoRepository = new PublicacaoRepository(strConexao);
             try
             {
                 Publicacao publicacao = new Publicacao();
                 publicacao.Id = Guid.NewGuid();
-                publicacao.Usuario = "Gabriel";
+                publicacao.Usuario = "486af80f-af60-4a9c-b4a1-5ec64b0b89c1";
                 publicacao.Descricao = "Teste descricao";
                 publicacao.DataPublicacao = DateTime.Now;
                 publicacao.AdicionaMidia("https://google.com.br");
@@ -36,12 +36,12 @@ namespace Uniftec.ProjetoWeb.SocialTec.Test
         [TestMethod]
         public void AlterarTest()
         {
-            string strConexao = ""; //Incluir string de conexão
+            string strConexao = "Server=pgsql.jmenzen.com.br;Port=5432;Database=jmenzen4;User Id=jmenzen4;Password='8N9;FLC?;@?I';";
             var publicacaoRepository = new PublicacaoRepository(strConexao); try
             {
                 Publicacao publicacao = new Publicacao();
-                publicacao.Id = Guid.NewGuid(); //Substituir por um ID existente
-                publicacao.Usuario = "Jorge";
+                publicacao.Id = Guid.Parse("2d4c583e-a51e-4c0b-b382-13217b1d86b5"); //Substituir por um ID existente
+                publicacao.Usuario = "486af80f-af60-4a9c-b4a1-5ec64b0b89c1";
                 publicacao.Descricao = "Teste alteracao";
                 publicacao.DataPublicacao = DateTime.Now;
                 publicacao.AdicionaMidia("https://www.google.com.br");
@@ -57,12 +57,12 @@ namespace Uniftec.ProjetoWeb.SocialTec.Test
         [TestMethod]
         public void ProcurarTest()
         {
-            string strConexao = ""; //Incluir string de conexão
+            string strConexao = "Server=pgsql.jmenzen.com.br;Port=5432;Database=jmenzen4;User Id=jmenzen4;Password='8N9;FLC?;@?I';";
             var publicacaoRepository = new PublicacaoRepository(strConexao);
             try
             {
-                var publicacao = publicacaoRepository.Procurar(Guid.NewGuid()); //Substituir por um ID existente
-                if (publicacao.Descricao == "Teste descricao")
+                var publicacao = publicacaoRepository.Procurar(Guid.Parse("2d4c583e-a51e-4c0b-b382-13217b1d86b5")); //Substituir por um ID existente
+                if (publicacao.Descricao == "Teste alteracao")
                 {
                     Assert.IsTrue(true);
                 }
@@ -81,11 +81,11 @@ namespace Uniftec.ProjetoWeb.SocialTec.Test
         [TestMethod]
         public void ProcurarTodosTest()
         {
-            string strConexao = ""; //Incluir string de conexão
+            string strConexao = "Server=pgsql.jmenzen.com.br;Port=5432;Database=jmenzen4;User Id=jmenzen4;Password='8N9;FLC?;@?I';";
             var publicacaoRepository = new PublicacaoRepository(strConexao);
             try
             {
-                var publicacoes = publicacaoRepository.ProcurarTodos();
+                var publicacoes = publicacaoRepository.ProcurarTodos("");
                 Assert.IsTrue(true);
             }
             catch (Exception ex)
