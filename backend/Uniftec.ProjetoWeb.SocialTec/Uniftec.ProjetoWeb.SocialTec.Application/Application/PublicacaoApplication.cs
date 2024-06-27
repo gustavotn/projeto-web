@@ -15,9 +15,8 @@ namespace Uniftec.ProjetoWeb.SocialTec.Application.Application
         private PublicacaoRepository publicacaoRepository;
         private string diretorioMidias;
 
-        public PublicacaoApplication() 
+        public PublicacaoApplication(string strConexao) 
         {
-            string strConexao = "Server=pgsql.jmenzen.com.br;Port=5432;Database=jmenzen4;User Id=jmenzen4;Password='8N9;FLC?;@?I';";
             this.publicacaoRepository = new PublicacaoRepository(strConexao);
 
             this.diretorioMidias = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "SocialTec", "Midias");
