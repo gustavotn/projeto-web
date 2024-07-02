@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using System.Reflection;
 using System.Text;
 using Uniftec.ProjetoWeb.SocialTec.Models;
 
@@ -20,7 +19,7 @@ namespace Uniftec.ProjetoWeb.SocialTec.Controllers
         {
             return View();
         }
-      
+
         [HttpPost]
         public async Task<ActionResult> Index(LoginViewModel model)
         {
@@ -42,6 +41,12 @@ namespace Uniftec.ProjetoWeb.SocialTec.Controllers
 
             if (response.IsSuccessStatusCode)
             {
+                var responseContent = await response.Content.ReadAsStringAsync();
+                var user = JsonConvert.DeserializeObject<CadastroViewModel>(responseContent);
+
+                HttpContext.Session.SetString("IdUsuario", user.Id.ToString());
+
+
                 return RedirectToAction("Index", "Home");
             }
             else

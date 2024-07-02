@@ -22,11 +22,6 @@ namespace Uniftec.ProjetoWeb.SocialTec.Controllers
             return View();
         }
 
-        public HttpClient Get_httpClient()
-        {
-            return _httpClient;
-        }
-
         [HttpPost]
         public async Task<IActionResult> Index(CadastroViewModel model, HttpClient _httpClient)
         {
