@@ -1,8 +1,325 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container">
+    <main role="main" class="pb-3">
+        <div class="container">
+            <div class="profile-page">
+
+                <div class="row profile-story">
+                    <h2>Stories</h2>
+                    <div class="story-content card-deck d-flex flex-row">
+                        <div class="story card rounded create-story">
+                            <img class="card-img-top image-story" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="Card image cap">
+                            <div class="card-body">
+                                <p class="card-title">Seus stories</p>
+                            </div>
+                        </div>
+                        <div class="story card">
+                            <img class="card-img-top image-story" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="Card image cap">
+                            <div class="card-body">
+                                <p class="card-title">Mike Popescu</p>
+                            </div>
+                        </div>
+                        <div class="story card">
+                            <img class="card-img-top image-story" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="Card image cap">
+                            <div class="card-body">
+                                <p class="card-title">Mike Popescu</p>
+                            </div>
+                        </div>
+                        <div class="story card">
+                            <img class="card-img-top image-story" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="Card image cap">
+                            <div class="card-body">
+                                <p class="card-title">Mike Popescu</p>
+                            </div>
+                        </div>
+                        <div class="story card">
+                            <img class="card-img-top image-story" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="Card image cap">
+                            <div class="card-body">
+                                <p class="card-title">Mike Popescu</p>
+                            </div>
+                        </div>
+                        <div class="story card">
+                            <img class="card-img-top image-story" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="Card image cap">
+                            <div class="card-body">
+                                <p class="card-title">Mike Popescu</p>
+                            </div>
+                        </div>
+                        <div class="story card">
+                            <img class="card-img-top image-story" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="Card image cap">
+                            <div class="card-body">
+                                <p class="card-title">Mike Popescu</p>
+                            </div>
+                        </div>
+                        <div class="story card">
+                            <img class="card-img-top image-story" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="Card image cap">
+                            <div class="card-body">
+                                <p class="card-title">Mike Popescu</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row profile-body">
+                    <!-- middle wrapper start -->
+                    <div class="col-md-8 col-xl-9 middle-wrapper">
+                        <div class="row">
+                            <div class="col-md-12 grid-margin">
+                                <div class="card rounded">
+                                    <div class="card-header">
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <div class="d-flex align-items-center justify-content-center gap-2">
+                                                <img class="img-xs rounded-circle" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="">
+                                                <div class="ml-2 d-flex flex-column">
+                                                    <span>Mike Popescu</span>
+                                                    <span class="tx-11 text-muted">1 min ago</span>
+                                                </div>
+                                            </div>
+                                            <div class="dropdown">
+                                                <button class="btn p-0" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal icon-lg pb-3px">
+                                                        <circle cx="12" cy="12" r="1"></circle>
+                                                        <circle cx="19" cy="12" r="1"></circle>
+                                                        <circle cx="5" cy="12" r="1"></circle>
+                                                    </svg>
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                                                    <a class="dropdown-item d-flex align-items-center" href="#">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-meh icon-sm mr-2">
+                                                            <circle cx="12" cy="12" r="10"></circle>
+                                                            <line x1="8" y1="15" x2="16" y2="15"></line>
+                                                            <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                                                            <line x1="15" y1="9" x2="15.01" y2="9"></line>
+                                                        </svg> <span class="">Unfollow</span>
+                                                    </a>
+                                                    <a class="dropdown-item d-flex align-items-center" href="#">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-corner-right-up icon-sm mr-2">
+                                                            <polyline points="10 9 15 4 20 9"></polyline>
+                                                            <path d="M4 20h7a4 4 0 0 0 4-4V4"></path>
+                                                        </svg> <span class="">Go to post</span>
+                                                    </a>
+                                                    <a class="dropdown-item d-flex align-items-center" href="#">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-copy icon-sm mr-2">
+                                                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                                        </svg> <span class="">Copy link</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="mb-3 tx-14">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus minima delectus nemo unde quae recusandae assumenda.</p>
+                                        <img class="img-fluid" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="">
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="d-flex post-actions gap-3">
+                                            <a href="javascript:;" class="d-flex align-items-center text-muted mr-4 justify-content-center gap-1">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart icon-md">
+                                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                                </svg>
+                                                <span class="d-none d-md-block ml-2">Like</span>
+                                            </a>
+                                            <a href="javascript:;" class="d-flex align-items-center text-muted mr-4 justify-content-center gap-1">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-square icon-md">
+                                                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                                                </svg>
+                                                <span class="d-none d-md-block ml-2">Comment</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="card rounded">
+                                    <div class="card-header">
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <div class="d-flex align-items-center">
+                                                <img class="img-xs rounded-circle" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="">
+                                                <div class="ml-2">
+                                                    <p>Mike Popescu</p>
+                                                    <p class="tx-11 text-muted">5 min ago</p>
+                                                </div>
+                                            </div>
+                                            <div class="dropdown">
+                                                <button class="btn p-0" type="button" id="dropdownMenuButton3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal icon-lg pb-3px">
+                                                        <circle cx="12" cy="12" r="1"></circle>
+                                                        <circle cx="19" cy="12" r="1"></circle>
+                                                        <circle cx="5" cy="12" r="1"></circle>
+                                                    </svg>
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
+                                                    <a class="dropdown-item d-flex align-items-center" href="#">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-meh icon-sm mr-2">
+                                                            <circle cx="12" cy="12" r="10"></circle>
+                                                            <line x1="8" y1="15" x2="16" y2="15"></line>
+                                                            <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                                                            <line x1="15" y1="9" x2="15.01" y2="9"></line>
+                                                        </svg> <span class="">Unfollow</span>
+                                                    </a>
+                                                    <a class="dropdown-item d-flex align-items-center" href="#">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-corner-right-up icon-sm mr-2">
+                                                            <polyline points="10 9 15 4 20 9"></polyline>
+                                                            <path d="M4 20h7a4 4 0 0 0 4-4V4"></path>
+                                                        </svg> <span class="">Go to post</span>
+                                                    </a>
+                                                    <a class="dropdown-item d-flex align-items-center" href="#">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-copy icon-sm mr-2">
+                                                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                                        </svg> <span class="">Copy link</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="mb-3 tx-14">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                                        <img class="img-fluid" src="../../../assets/images/sample2.jpg" alt="">
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="d-flex post-actions gap-3">
+                                            <a href="javascript:;" class="d-flex align-items-center text-muted mr-4 justify-content-center gap-1">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart icon-md">
+                                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                                </svg>
+                                                <span class="d-none d-md-block ml-2">Like</span>
+                                            </a>
+                                            <a href="javascript:;" class="d-flex align-items-center text-muted mr-4 justify-content-center gap-1">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-square icon-md">
+                                                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                                                </svg>
+                                                <span class="d-none d-md-block ml-2">Comment</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- middle wrapper end -->
+                    <!-- right wrapper start -->
+                    <div class="d-none d-xl-block col-xl-3 right-wrapper">
+                        <div class="row">
+                            <div class="col-md-12 grid-margin">
+                                <div class="card rounded">
+                                    <div class="card-body">
+                                        <h6 class="card-title">Sugestões para você</h6>
+                                        <div class="d-flex justify-content-between mb-2 pb-2 border-bottom">
+                                            <div class="d-flex align-items-center justify-content-center hover-pointer gap-2">
+                                                <img class="img-xs rounded-circle" src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="">
+                                                <div class="ml-2 d-flex flex-column">
+                                                    <span>Mike Popescu</span>
+                                                    <span class="tx-11 text-muted">12 Mutual Friends</span>
+                                                </div>
+                                            </div>
+                                            <button class="btn btn-icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user-plus" data-toggle="tooltip" title="" data-original-title="Connect">
+                                                    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                                    <circle cx="8.5" cy="7" r="4"></circle>
+                                                    <line x1="20" y1="8" x2="20" y2="14"></line>
+                                                    <line x1="23" y1="11" x2="17" y2="11"></line>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                        <div class="d-flex justify-content-between mb-2 pb-2 border-bottom">
+                                            <div class="d-flex align-items-center hover-pointer">
+                                                <img class="img-xs rounded-circle" src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="">
+                                                <div class="ml-2">
+                                                    <p>Mike Popescu</p>
+                                                    <p class="tx-11 text-muted">12 Mutual Friends</p>
+                                                </div>
+                                            </div>
+                                            <button class="btn btn-icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user-plus" data-toggle="tooltip" title="" data-original-title="Connect">
+                                                    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                                    <circle cx="8.5" cy="7" r="4"></circle>
+                                                    <line x1="20" y1="8" x2="20" y2="14"></line>
+                                                    <line x1="23" y1="11" x2="17" y2="11"></line>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                        <div class="d-flex justify-content-between mb-2 pb-2 border-bottom">
+                                            <div class="d-flex align-items-center hover-pointer">
+                                                <img class="img-xs rounded-circle" src="https://bootdey.com/img/Content/avatar/avatar4.png" alt="">
+                                                <div class="ml-2">
+                                                    <p>Mike Popescu</p>
+                                                    <p class="tx-11 text-muted">12 Mutual Friends</p>
+                                                </div>
+                                            </div>
+                                            <button class="btn btn-icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user-plus" data-toggle="tooltip" title="" data-original-title="Connect">
+                                                    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                                    <circle cx="8.5" cy="7" r="4"></circle>
+                                                    <line x1="20" y1="8" x2="20" y2="14"></line>
+                                                    <line x1="23" y1="11" x2="17" y2="11"></line>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                        <div class="d-flex justify-content-between mb-2 pb-2 border-bottom">
+                                            <div class="d-flex align-items-center hover-pointer">
+                                                <img class="img-xs rounded-circle" src="https://bootdey.com/img/Content/avatar/avatar5.png" alt="">
+                                                <div class="ml-2">
+                                                    <p>Mike Popescu</p>
+                                                    <p class="tx-11 text-muted">12 Mutual Friends</p>
+                                                </div>
+                                            </div>
+                                            <button class="btn btn-icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user-plus" data-toggle="tooltip" title="" data-original-title="Connect">
+                                                    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                                    <circle cx="8.5" cy="7" r="4"></circle>
+                                                    <line x1="20" y1="8" x2="20" y2="14"></line>
+                                                    <line x1="23" y1="11" x2="17" y2="11"></line>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                        <div class="d-flex justify-content-between mb-2 pb-2 border-bottom">
+                                            <div class="d-flex align-items-center hover-pointer">
+                                                <img class="img-xs rounded-circle" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="">
+                                                <div class="ml-2">
+                                                    <p>Mike Popescu</p>
+                                                    <p class="tx-11 text-muted">12 Mutual Friends</p>
+                                                </div>
+                                            </div>
+                                            <button class="btn btn-icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user-plus" data-toggle="tooltip" title="" data-original-title="Connect">
+                                                    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                                    <circle cx="8.5" cy="7" r="4"></circle>
+                                                    <line x1="20" y1="8" x2="20" y2="14"></line>
+                                                    <line x1="23" y1="11" x2="17" y2="11"></line>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <div class="d-flex align-items-center hover-pointer">
+                                                <img class="img-xs rounded-circle" src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="">
+                                                <div class="ml-2">
+                                                    <p>Mike Popescu</p>
+                                                    <p class="tx-11 text-muted">12 Mutual Friends</p>
+                                                </div>
+                                            </div>
+                                            <button class="btn btn-icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user-plus" data-toggle="tooltip" title="" data-original-title="Connect">
+                                                    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                                    <circle cx="8.5" cy="7" r="4"></circle>
+                                                    <line x1="20" y1="8" x2="20" y2="14"></line>
+                                                    <line x1="23" y1="11" x2="17" y2="11"></line>
+                                                </svg>
+                                            </button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- right wrapper end -->
+                </div>
+            </div>
+        </div>
+    </main>
 </div>
