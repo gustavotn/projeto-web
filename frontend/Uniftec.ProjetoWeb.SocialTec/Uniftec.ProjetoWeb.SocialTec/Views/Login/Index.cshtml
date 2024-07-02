@@ -1,0 +1,24 @@
+﻿@model LoginViewModel
+@{
+    ViewBag.Title = "Login";
+    Layout = "_Layout1";
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
+
+<h2>Entrar</h2>
+<form asp-action="Index" method="post">
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Password"></label>
+        <input asp-for="Password" class="form-control" type="password" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary btn-block">Login</button>
+
+    <a href="@Url.Action("Index", "Cadastro")" class="btn btn-info btn-block">Cadastrar-se</a>
+</form>
+
