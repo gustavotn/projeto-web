@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Uniftec.ProjetoWeb.SocialTec.Backend.Adapter;
 using Uniftec.ProjetoWeb.SocialTec.Backend.HTTPClient;
+using Uniftec.ProjetoWeb.SocialTec.Backend.Utils;
 using Uniftec.ProjetoWeb.SocialTec.Models;
 
 namespace Uniftec.ProjetoWeb.SocialTec.Controllers
@@ -20,7 +21,7 @@ namespace Uniftec.ProjetoWeb.SocialTec.Controllers
             var publicacaoModel = PublicacaoAdapter.ToPublicacaoModel(publicacaoCadastro);
             publicacaoModel.DataPublicacao = DateTime.Now;
 
-            var id = new APIHttpClient("http://grupo5.neurosky.com.br/api/").Post("Publicacao?Usuario=" + publicacaoModel.Usuario + "&Descricao=" + publicacaoModel.Descricao + "&DataPublicacao=" + publicacaoModel.DataPublicacao.ToString("yyyy-MM-ddTHH:mm:ss.fffZ"), publicacaoModel);
+            var id = new APIHttpClient(Endpoints.GRUPO_5).Post("Publicacao?Usuario=" + publicacaoModel.Usuario + "&Descricao=" + publicacaoModel.Descricao + "&DataPublicacao=" + publicacaoModel.DataPublicacao.ToString("yyyy-MM-ddTHH:mm:ss.fffZ"), publicacaoModel);
 
             return Redirect("../Home");
 
@@ -31,7 +32,7 @@ namespace Uniftec.ProjetoWeb.SocialTec.Controllers
         {
             var anuncioModel = AnuncioAdapter.ToAnuncioModel(anuncioCadastro);
 
-            var id = new APIHttpClient("http://grupo1.neurosky.com.br/api/").Post("Anuncio?UrlImagem=" + anuncioModel.UrlImagem + "&Link=" + anuncioModel.Link + "&Texto=" + anuncioModel.Texto, anuncioModel);
+            var id = new APIHttpClient(Endpoints.GRUPO_1).Post("Anuncio?UrlImagem=" + anuncioModel.UrlImagem + "&Link=" + anuncioModel.Link + "&Texto=" + anuncioModel.Texto, anuncioModel);
 
             return Redirect("../Home");
 
@@ -50,7 +51,7 @@ namespace Uniftec.ProjetoWeb.SocialTec.Controllers
             storieModel.NumVisualização = 0;
             storieModel.Situacao = 1;
 
-            var id = new APIHttpClient("http://grupo2.neurosky.com.br/api/").Post("Storie?IdUsuario=" + storieModel.IdUsuario + "&DataEnvio=" + storieModel.DataEnvio.ToString("yyyy-MM-ddTHH:mm:ss.fffZ") + "&NumVisualização=" + storieModel.NumVisualização + "&Situacao=" + storieModel.Situacao, storieModel);
+            var id = new APIHttpClient(Endpoints.GRUPO_2).Post("Storie?IdUsuario=" + storieModel.IdUsuario + "&DataEnvio=" + storieModel.DataEnvio.ToString("yyyy-MM-ddTHH:mm:ss.fffZ") + "&NumVisualização=" + storieModel.NumVisualização + "&Situacao=" + storieModel.Situacao, storieModel);
 
             return Redirect("../Home");
 
