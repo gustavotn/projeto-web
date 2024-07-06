@@ -30,7 +30,7 @@ namespace Uniftec.ProjetoWeb.SocialTec.Models
 
         public string Bio { get; set; }
 
-        public string FotoPerfil { get; set; }
+        public string? FotoPerfil { get; set; }
 
         [Required]
         public string Cidade { get; set; }
@@ -47,7 +47,7 @@ namespace Uniftec.ProjetoWeb.SocialTec.Models
         [Required]
         public int Tipo { get; set; }
 
-        public List<Guid> Amigos { get; set; }
+        public List<Guid>? Amigos { get; set; }
 
     }
 }

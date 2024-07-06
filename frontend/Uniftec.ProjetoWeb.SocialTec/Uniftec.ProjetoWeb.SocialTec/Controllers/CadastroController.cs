@@ -23,8 +23,10 @@ namespace Uniftec.ProjetoWeb.SocialTec.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Index(CadastroViewModel model, HttpClient _httpClient)
+        public async Task<IActionResult> Index(CadastroViewModel model)
         {
+            model.FotoPerfil = "";
+            model.Amigos = [];
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -55,7 +57,12 @@ namespace Uniftec.ProjetoWeb.SocialTec.Controllers
 
             if (response.IsSuccessStatusCode)
             {
-                return RedirectToAction("Index", "Perfil");
+                var responseContent = await response.Content.ReadAsStringAsync();
+                var userId = JsonConvert.DeserializeObject<string>(responseContent);
+
+                HttpContext.Session.SetString("IdUsuario", userId);
+
+                return RedirectToAction("Index", "Home");
             }
             else
             {
