@@ -8,6 +8,8 @@ namespace Uniftec.ProjetoWeb.SocialTec.Models
         public List<AnuncioModel> Anuncios { get; set; }
         public List<StorieModel> Stories { get; set; }
         public List<UsuarioModel> UsuariosSeguir { get; set; }
+        public List<Guid> ListaCurtidasUsuario {  get; set; }
+        public List<ListaCurtidasModel> ListaCurtidas {  get; set; }
         public string IdUsuario {  get; set; }
         public string TipoUsuario { get; set; }
         public string FotoPerfilUsuario { get; set; }

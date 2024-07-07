@@ -36,8 +36,21 @@ namespace Uniftec.ProjetoWeb.SocialTec.Controllers
 
             var usuariosSeguir = UsuarioAdapter.ArrayExternalModelToArrayModel(new APIHttpClient(Endpoints.GRUPO_3).Get<List<UsuarioExternalModel>>("Usuario/"));
 
+            List<Guid> curtidas = new List<Guid>();
+            List<ListaCurtidasModel> listaCurtidas = new List<ListaCurtidasModel>();
+            List<Guid> listaCurtidasUsuario = new List<Guid>();
             foreach (var pub in publicacoes)
             {
+                curtidas = new APIHttpClient(Endpoints.GRUPO_4).Get<List<Guid>>("likes/post/" + pub.Id);
+                listaCurtidas.Add(new ListaCurtidasModel()
+                {
+                    IdPost = pub.Id,
+                    NumCurtidas = curtidas.Count,
+                });
+                if (curtidas.Any(curtida => curtida == Guid.Parse(idUsuarioLogado)))
+                {
+                    listaCurtidasUsuario.Add(pub.Id);
+                }
                 pub.Usuario = usuario;
             }
 
@@ -45,9 +58,18 @@ namespace Uniftec.ProjetoWeb.SocialTec.Controllers
             {
                 usuariosSeguir.RemoveAll(x => x.Id == amigo.Id);
                 var publicacoesAmigo = PublicacaoAdapter.ArrayExternalModelToArrayModel(new APIHttpClient(Endpoints.GRUPO_5).Get<List<PublicacaoExternalModel>>("Publicacao?idUsuario=" + amigo.Id)); ;
-
                 foreach (var pubAmigo in publicacoesAmigo)
                 {
+                    curtidas = new APIHttpClient(Endpoints.GRUPO_4).Get<List<Guid>>("likes/post/"+pubAmigo.Id);
+                    listaCurtidas.Add(new ListaCurtidasModel()
+                    {
+                        IdPost = pubAmigo.Id,
+                        NumCurtidas = curtidas.Count,
+                    });
+                    if (curtidas.Any(curtida => curtida == Guid.Parse(idUsuarioLogado)))
+                    {
+                        listaCurtidasUsuario.Add(pubAmigo.Id);
+                    }
                     pubAmigo.Usuario = amigo;
                     publicacoes.Add(pubAmigo);
                 }
@@ -58,6 +80,8 @@ namespace Uniftec.ProjetoWeb.SocialTec.Controllers
                 Stories = stories.OrderByDescending(s => s.DataEnvio).ToList(),
                 UsuariosSeguir = usuariosSeguir.Take(10).ToList(),
                 Anuncios = anuncios.Take(10).ToList(),
+                ListaCurtidasUsuario = listaCurtidasUsuario,
+                ListaCurtidas = listaCurtidas,
                 IdUsuario = idUsuarioLogado,
                 TipoUsuario = HttpContext.Session.GetString("TipoUsuario"),
                 FotoPerfilUsuario = usuario.FotoPerfil,
@@ -80,6 +104,28 @@ namespace Uniftec.ProjetoWeb.SocialTec.Controllers
 
             var idUsuario = new APIHttpClient(Endpoints.GRUPO_3).Put("Usuario", Guid.Empty, usuarioLogado);
             return Json(usuarioSeguir.Id);
+        }
+
+        [HttpPost]
+        public IActionResult Curtir(Guid idPost)
+        {
+            Guid idUsuarioLogado = Guid.Parse(HttpContext.Session.GetString("IdUsuario"));
+            var curtidas = new APIHttpClient(Endpoints.GRUPO_4).Get<List<Guid>>("likes/post/" + idPost);
+            if (curtidas.Any(curtida => curtida == idUsuarioLogado))
+            {
+                var post = new APIHttpClient(Endpoints.GRUPO_4).Post<CurtidaModel>("likes/post/" + idPost + "/" + idUsuarioLogado, new CurtidaModel()
+                {
+                    IdPost = idPost,
+                    IdUsuario = idUsuarioLogado
+                });
+            }
+            else
+            {
+                // retornando 500
+                // var delete = new APIHttpClient(Endpoints.GRUPO_4).Delete<Guid>("likes/post/"+idPost+"/", idUsuarioLogado);
+                var delete = "";
+            }
+            return Json(idPost);
         }
     }
 }
