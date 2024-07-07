@@ -1,4 +1,5 @@
-﻿using Uniftec.ProjetoWeb.SocialTec.Models;
+﻿using Uniftec.ProjetoWeb.SocialTec.Backend.Models;
+using Uniftec.ProjetoWeb.SocialTec.Models;
 
 namespace Uniftec.ProjetoWeb.SocialTec.Backend.Adapter
 {
@@ -18,6 +19,34 @@ namespace Uniftec.ProjetoWeb.SocialTec.Backend.Adapter
                     Conteudo = Convert.ToBase64String(fileBytes),
                 };
             }
+        }
+        public static StorieModel ExternalModelToModel(StorieExternalModel storieExt)
+        {
+            var storie = new StorieModel();
+
+            storie.Id = storieExt.Id;
+            storie.Usuario = new UsuarioStorie()
+            {
+                Id = storieExt.Usuario.Id,
+                Nome = storieExt.Usuario.Nome,
+            };
+            storie.NumVisualização = storieExt.NumVisualização;
+            storie.DataEnvio = storieExt.DataEnvio;
+            storie.Situacao = storieExt.Situacao;
+            storie.Conteudo = storieExt.Conteudo;
+
+            return storie;
+        }
+        public static List<StorieModel> ArrayExternalModelToArrayModel(List<StorieExternalModel> storieExt)
+        {
+            var stories = new List<StorieModel>();
+
+            foreach (var storie in storieExt)
+            {
+                stories.Add(ExternalModelToModel(storie));
+            }
+
+            return stories;
         }
     }
 }

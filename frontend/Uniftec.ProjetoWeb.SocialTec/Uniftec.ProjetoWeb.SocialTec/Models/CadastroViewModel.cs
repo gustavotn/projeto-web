@@ -47,7 +47,7 @@ namespace Uniftec.ProjetoWeb.SocialTec.Models
         [Required]
         public int Tipo { get; set; }
 
-        public List<Guid>? Amigos { get; set; }
+        public List<CadastroViewModel>? Amigos { get; set; }
 
     }
 }

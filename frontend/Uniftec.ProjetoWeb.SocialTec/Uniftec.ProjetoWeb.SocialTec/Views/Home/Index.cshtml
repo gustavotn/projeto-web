@@ -2,6 +2,7 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+
 }
 
 @model Uniftec.ProjetoWeb.SocialTec.Models.HomeModel
@@ -10,64 +11,132 @@
     <main role="main" class="pb-3">
         <div class="container">
             <div class="profile-page">
-
+            @if (Model.TipoUsuario == "0")
+            {
                 <div class="row profile-story">
                     <h2>Stories</h2>
                     <div class="story-content card-deck d-flex flex-row">
                         <div class="story card rounded create-story">
                             <div style="position: relative">
-                                <img class="card-img-top image-story opacity-50" src="https://bootdey.com/img/Content/avatar/avatar6.png">
-                                <img class="img-story-create rounded-circle" src="assets/plus.png">
+                                @if (Model.FotoPerfilUsuario != "")
+                                {
+                                    <img class="card-img-top image-story opacity-50" src="data:image/png;base64, @Model.FotoPerfilUsuario">
+                                }
+                                else
+                                {
+                                    <img class="card-img-top image-story opacity-50" src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png">
+                                }
+                                <button data-bs-toggle="modal" data-bs-target="#CriarStorieModal">
+                                    <img class="img-story-create rounded-circle" src="assets/plus.png">
+                                </button>
                             </div>
                             <div class="card-body">
                                 <p class="card-title">Seus stories</p>
                             </div>
                         </div>
-                        <div class="story card">
-                            <img class="card-img-top image-story" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="Card image cap">
-                            <div class="card-body">
-                                <p class="card-title">Mike Popescu</p>
+                        @foreach (var storie in Model.Stories)
+                        {
+                            <div class="story card">
+                                <img class="card-img-top image-story" src="data:image/png;base64, @storie.Conteudo" alt="Card image cap">
+                                <div class="card-body">
+                                        <p class="card-title">@storie.Usuario.Nome</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="story card">
-                            <img class="card-img-top image-story" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="Card image cap">
-                            <div class="card-body">
-                                <p class="card-title">Mike Popescu</p>
+                        }
+                    </div>
+                </div>
+                <div class="modal fade" id="CriarStorieModal" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog" role="document" style="color: white;">
+                        <div class="modal-content" style="background-color: #007bff;border-radius: 0.5rem;text-align:center;">
+                            <div class="modal-header" style="border-radius: 0.5rem 0.5rem 0 0;">
+                                <h5 class="modal-title">Criar novo anúncio</h5>
+                                <button type="button" style="color:white;" class="btn" data-bs-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
                             </div>
-                        </div>
-                        <div class="story card">
-                            <img class="card-img-top image-story" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="Card image cap">
-                            <div class="card-body">
-                                <p class="card-title">Mike Popescu</p>
-                            </div>
-                        </div>
-                        <div class="story card">
-                            <img class="card-img-top image-story" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="Card image cap">
-                            <div class="card-body">
-                                <p class="card-title">Mike Popescu</p>
-                            </div>
-                        </div>
-                        <div class="story card">
-                            <img class="card-img-top image-story" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="Card image cap">
-                            <div class="card-body">
-                                <p class="card-title">Mike Popescu</p>
-                            </div>
-                        </div>
-                        <div class="story card">
-                            <img class="card-img-top image-story" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="Card image cap">
-                            <div class="card-body">
-                                <p class="card-title">Mike Popescu</p>
-                            </div>
-                        </div>
-                        <div class="story card">
-                            <img class="card-img-top image-story" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="Card image cap">
-                            <div class="card-body">
-                                <p class="card-title">Mike Popescu</p>
+                            <div class="modal-body" style="background-color: #007bff;text-align:center;">
+                                <form method="post" action="Publicacao/CriarStorie" enctype="multipart/form-data">
+                                    <div class="form-group" style="padding-top:10px;padding-bottom:10px;">
+                                        <label for="MidiaStorie" style="padding-bottom:10px;">Faça upload de sua foto</label>
+                                        <input type="file" class="custom-file-input" id="MidiaStorie" name="conteudo" accept="image/*,video/*">
+                                    </div>
+                                    <button type="submit" class="btn btn-block" style="border-radius: 0.5rem;background-color:#808080; color:white">Publicar</button>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
+            <div class="row">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#CriarPublicacaoModal">
+                    Criar nova publicação
+                </button>
+                <div class="modal fade" id="CriarPublicacaoModal" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog" role="document" style="color: white;">
+                        <div class="modal-content" style="background-color: #007bff;border-radius: 0.5rem;text-align:center;">
+                            <div class="modal-header" style="border-radius: 0.5rem 0.5rem 0 0;">
+                                <h5 class="modal-title">Criar nova publicação</h5>
+                                <button type="button" style="color:white;" class="btn" data-bs-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body" style="background-color: #007bff;text-align:center;">
+                                <form method="post" action="Publicacao/CriarPublicacao" enctype="multipart/form-data">
+                                    <div class="form-group">
+                                        <label for="DescricaoPublicacao" style="padding-bottom:10px;">Escreva seu texto ou legenda</label>
+                                        <textarea class="form-control" id="DescricaoPublicacao" name="descricao" rows="4" required style="border-radius: 0.5rem;"></textarea>
+                                    </div>
+                                    <div class="form-group" style="padding-top:10px;padding-bottom:10px;">
+                                        <label for="MidiaPublicacao" style="padding-bottom:10px;">Faça upload de sua foto</label>
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="MidiaPublicacao" name="midia" accept="image/*,video/*">
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-block" style="border-radius: 0.5rem;background-color:#808080; color:white">Publicar</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            }
+            else
+            {
+            <div class="row">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#CriarAnuncioModal">
+                    Criar novo anúncio
+                </button>
 
+                <div class="modal fade" id="CriarAnuncioModal" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog" role="document" style="color: white;">
+                        <div class="modal-content" style="background-color: #007bff;border-radius: 0.5rem;text-align:center;">
+                            <div class="modal-header" style="border-radius: 0.5rem 0.5rem 0 0;">
+                                <h5 class="modal-title">Criar novo anúncio</h5>
+                                <button type="button" style="color:white;" class="btn" data-bs-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body" style="background-color: #007bff;text-align:center;">
+                                <form method="post" action="Publicacao/CriarAnuncio" enctype="multipart/form-data">
+                                    <div class="form-group">
+                                        <label for="DescricaoAnuncio" style="padding-bottom:10px;">Escreva seu texto ou legenda</label>
+                                        <textarea class="form-control" id="DescricaoAnuncio" name="texto" rows="4" required style="border-radius: 0.5rem;"></textarea>
+                                    </div>
+                                    <div class="form-group" style="padding-top:10px;padding-bottom:10px;">
+                                        <label for="MidiaAnuncio" style="padding-bottom:10px;">Insira a URL da foto</label>
+                                        <input class="form-control" type="text" id="MidiaAnuncio" style="border-radius: 0.5rem;" name="urlImagem">
+                                    </div>
+                                    <div class="form-group" style="padding-top:10px;padding-bottom:10px;">
+                                        <label for="LinkAnuncio" style="padding-bottom:10px;">Insira a URL de redirecionamento</label>
+                                        <input class="form-control" type="text" id="LinkAnuncio" style="border-radius: 0.5rem;" name="link">
+                                    </div>
+                                    <button type="submit" class="btn btn-block" style="border-radius: 0.5rem;background-color:#808080; color:white">Publicar</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            }
                 <div class="row profile-body">
                     <!-- middle wrapper start -->
                     <div class="col-md-8 col-xl-9 middle-wrapper">
@@ -79,10 +148,16 @@
                                         <div class="card-header">
                                             <div class="d-flex align-items-center justify-content-between">
                                                 <div class="d-flex align-items-center justify-content-center gap-2">
-                                                    <img class="img-xs rounded-circle" src="data:image/jpeg;base64,@pub.Usuario.FotoPerfil" alt="">
+                                                    @if (pub.Usuario.FotoPerfil != "")
+                                                    {
+                                                        <img class="img-xs rounded-circle" src="data:image/jpeg;base64,@pub.Usuario.FotoPerfil" alt="">
+                                                    }else
+                                                    {
+                                                        <img class="img-xs rounded-circle" src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png" alt="">
+                                                    }
                                                     <div class="ml-2 d-flex flex-column">
                                                         <span>@pub.Usuario.Nome @pub.Usuario.Sobrenome</span>
-                                                        <span class="tx-11 text-muted">1 min ago</span>
+                                                        <span class="tx-11 text-muted">@pub.DataPublicacao</span>
                                                     </div>
                                                 </div>
                                                 <div class="dropdown">
@@ -131,13 +206,13 @@
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart icon-md">
                                                         <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
                                                     </svg>
-                                                    <span class="d-none d-md-block ml-2">Like</span>
+                                                    <span class="d-none d-md-block ml-2">Curtir</span>
                                                 </a>
                                                 <a href="javascript:;" class="d-flex align-items-center text-muted mr-4 justify-content-center gap-1">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-square icon-md">
                                                         <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
                                                     </svg>
-                                                    <span class="d-none d-md-block ml-2">Comment</span>
+                                                    <span class="d-none d-md-block ml-2">Comentar</span>
                                                 </a>
                                             </div>
                                         </div>
@@ -146,6 +221,21 @@
 
                             </div>
                         }
+                        @foreach (var ad in Model.Anuncios)
+                        {
+                            <div class="row">
+                                <div class="col-md-12 grid-margin">
+                                    <div class="card rounded">
+                                        <div class="card-body">
+                                            <p class="mb-3 tx-14">@ad.Texto</p>
+                                            <a href="@ad.Link">
+                                                <img class="img-fluid" src="@ad.UrlImagem" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                       }
                     </div>
                     <!-- middle wrapper end -->
                     <!-- right wrapper start -->
@@ -155,15 +245,21 @@
                                 <div class="card rounded">
                                     <div class="card-body">
                                         <h6 class="card-title">Sugestões para você</h6>
-                                        <div class="d-flex justify-content-between mb-2 pb-2 border-bottom">
+                                        @foreach (var usuario in Model.UsuariosSeguir)
+                                        {
+                                        <div class="d-flex justify-content-between mb-2 pb-2 border-bottom" data-id="@usuario.Id">
                                             <div class="d-flex align-items-center justify-content-center hover-pointer gap-2">
-                                                <img class="img-xs rounded-circle" src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="">
+                                                @if (@usuario.FotoPerfil != "")
+                                                {
+                                                    <img class="img-xs rounded-circle" src="data:image/png;base64, @usuario.FotoPerfil" alt="Foto de perfil de @usuario.Nome @usuario.Sobrenome">
+                                                }else{
+                                                    <img class="img-xs rounded-circle" src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png" alt="Foto de perfil de @usuario.Nome @usuario.Sobrenome">
+                                                }
                                                 <div class="ml-2 d-flex flex-column">
-                                                    <span>Mike Popescu</span>
-                                                    <span class="tx-11 text-muted">12 Mutual Friends</span>
+                                                    <span>@usuario.Nome @usuario.Sobrenome</span>
                                                 </div>
                                             </div>
-                                            <button class="btn btn-icon">
+                                            <button class="btn btn-icon" onclick="Seguir(this)">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user-plus" data-toggle="tooltip" title="" data-original-title="Connect">
                                                     <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
                                                     <circle cx="8.5" cy="7" r="4"></circle>
@@ -172,92 +268,7 @@
                                                 </svg>
                                             </button>
                                         </div>
-                                        <div class="d-flex justify-content-between mb-2 pb-2 border-bottom">
-                                            <div class="d-flex align-items-center hover-pointer">
-                                                <img class="img-xs rounded-circle" src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="">
-                                                <div class="ml-2">
-                                                    <p>Mike Popescu</p>
-                                                    <p class="tx-11 text-muted">12 Mutual Friends</p>
-                                                </div>
-                                            </div>
-                                            <button class="btn btn-icon">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user-plus" data-toggle="tooltip" title="" data-original-title="Connect">
-                                                    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                                                    <circle cx="8.5" cy="7" r="4"></circle>
-                                                    <line x1="20" y1="8" x2="20" y2="14"></line>
-                                                    <line x1="23" y1="11" x2="17" y2="11"></line>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                        <div class="d-flex justify-content-between mb-2 pb-2 border-bottom">
-                                            <div class="d-flex align-items-center hover-pointer">
-                                                <img class="img-xs rounded-circle" src="https://bootdey.com/img/Content/avatar/avatar4.png" alt="">
-                                                <div class="ml-2">
-                                                    <p>Mike Popescu</p>
-                                                    <p class="tx-11 text-muted">12 Mutual Friends</p>
-                                                </div>
-                                            </div>
-                                            <button class="btn btn-icon">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user-plus" data-toggle="tooltip" title="" data-original-title="Connect">
-                                                    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                                                    <circle cx="8.5" cy="7" r="4"></circle>
-                                                    <line x1="20" y1="8" x2="20" y2="14"></line>
-                                                    <line x1="23" y1="11" x2="17" y2="11"></line>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                        <div class="d-flex justify-content-between mb-2 pb-2 border-bottom">
-                                            <div class="d-flex align-items-center hover-pointer">
-                                                <img class="img-xs rounded-circle" src="https://bootdey.com/img/Content/avatar/avatar5.png" alt="">
-                                                <div class="ml-2">
-                                                    <p>Mike Popescu</p>
-                                                    <p class="tx-11 text-muted">12 Mutual Friends</p>
-                                                </div>
-                                            </div>
-                                            <button class="btn btn-icon">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user-plus" data-toggle="tooltip" title="" data-original-title="Connect">
-                                                    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                                                    <circle cx="8.5" cy="7" r="4"></circle>
-                                                    <line x1="20" y1="8" x2="20" y2="14"></line>
-                                                    <line x1="23" y1="11" x2="17" y2="11"></line>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                        <div class="d-flex justify-content-between mb-2 pb-2 border-bottom">
-                                            <div class="d-flex align-items-center hover-pointer">
-                                                <img class="img-xs rounded-circle" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="">
-                                                <div class="ml-2">
-                                                    <p>Mike Popescu</p>
-                                                    <p class="tx-11 text-muted">12 Mutual Friends</p>
-                                                </div>
-                                            </div>
-                                            <button class="btn btn-icon">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user-plus" data-toggle="tooltip" title="" data-original-title="Connect">
-                                                    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                                                    <circle cx="8.5" cy="7" r="4"></circle>
-                                                    <line x1="20" y1="8" x2="20" y2="14"></line>
-                                                    <line x1="23" y1="11" x2="17" y2="11"></line>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                        <div class="d-flex justify-content-between">
-                                            <div class="d-flex align-items-center hover-pointer">
-                                                <img class="img-xs rounded-circle" src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="">
-                                                <div class="ml-2">
-                                                    <p>Mike Popescu</p>
-                                                    <p class="tx-11 text-muted">12 Mutual Friends</p>
-                                                </div>
-                                            </div>
-                                            <button class="btn btn-icon">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user-plus" data-toggle="tooltip" title="" data-original-title="Connect">
-                                                    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                                                    <circle cx="8.5" cy="7" r="4"></circle>
-                                                    <line x1="20" y1="8" x2="20" y2="14"></line>
-                                                    <line x1="23" y1="11" x2="17" y2="11"></line>
-                                                </svg>
-                                            </button>
-                                        </div>
-
+                                        }
                                     </div>
                                 </div>
                             </div>
@@ -269,3 +280,15 @@
         </div>
     </main>
 </div>
+<script>
+    function Seguir(e) {
+        var url = "/Home/Seguir";
+        var parametros = { id: $(e).parent().data('id') }
+        $.post(url, parametros, RetornoSeguir);
+    }
+
+    function RetornoSeguir(idUsuario) {
+        $(document.querySelectorAll("[data-id='" + idUsuario + "']")[0]).children('button').remove()
+        $(document.querySelectorAll("[data-id='" + idUsuario + "']")[0]).append('<span class="btn btn-success">Seguindo</span>')
+    }
+</script>

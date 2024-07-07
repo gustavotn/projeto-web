@@ -45,6 +45,8 @@ namespace Uniftec.ProjetoWeb.SocialTec.Controllers
                 var user = JsonConvert.DeserializeObject<CadastroViewModel>(responseContent);
 
                 HttpContext.Session.SetString("IdUsuario", user.Id.ToString());
+                HttpContext.Session.SetString("TipoUsuario", user.Tipo.ToString());
+                HttpContext.Session.SetString("NomeUsuario", user.Nome+" "+user.Sobrenome);
 
 
                 return RedirectToAction("Index", "Home");
@@ -55,6 +57,12 @@ namespace Uniftec.ProjetoWeb.SocialTec.Controllers
                 return View(model);
             }
 
+        }
+        [HttpGet]
+        public IActionResult Logout()
+        {
+            HttpContext.Session.SetString("IdUsuario", "");
+            return RedirectToAction("Index", "Login");
         }
     }
 }

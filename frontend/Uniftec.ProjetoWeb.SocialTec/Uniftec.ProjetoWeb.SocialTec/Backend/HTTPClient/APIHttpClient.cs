@@ -23,7 +23,7 @@ namespace Uniftec.ProjetoWeb.SocialTec.Backend.HTTPClient
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                HttpResponseMessage response = client.PutAsJsonAsync(action + id.ToString(), data).Result;
+                HttpResponseMessage response = client.PutAsJsonAsync(action, data).Result;
                 if (response.IsSuccessStatusCode)
                 {
                     var sucesso = response.Content.ReadAsAsync<Guid>().Result;
